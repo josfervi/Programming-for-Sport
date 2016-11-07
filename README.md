@@ -1,1 +1,1 @@
-Through InterviewBit, I am learning the skills that I need for technology jobs. As a fresh college graduate, InterviewBit helps me polish my skills and get ready for the job. InterviewBit also gets me connected with the right companies worldwide based on my skills and preferences. InterviewBit is helping me get my dream job.
+InterviewBit helps me polish my programming and problem solving skills.
