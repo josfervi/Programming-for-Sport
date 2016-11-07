@@ -1,3 +1,6 @@
+# https://www.interviewbit.com/problems/maximum-unsorted-subarray/
+# misnomer: should be minimum_unsorted_subarray
+
 class Solution:
     # @param A : list of integers
     # @return a list of integers
