@@ -4,22 +4,21 @@ class Solution:
     # @param A : list of integers
     # @return A after the sort
     def sortColors(self, A):
-        n = len(A)
-        i = 0
-        j = n - 1
-        k = n - 1
-        while i < k:
-            if A[i] == 0:
-                i += 1
-            elif A[i] == 1:
-                if i < j:
-                    A[i],A[j] = A[j],A[i]
-                    j-=1
-                else:
-                    i+= 1
-            else:
-                A[i],A[k] = A[k],A[i]
-                k -= 1
-                if j > k:
-                    j = k
+        # use bucket sort
+        
+        r_cnt= 0 # red   is repr by 0
+        w_cnt= 0 # white is repr by 1
+        b_cnt= 0 # blue  is repr by 2
+        
+        S= 0
+        
+        for a in A:
+            b_cnt+= (a==2)
+            S+= a
+        
+        w_cnt= S - (b_cnt << 1)
+        r_cnt= len(A) - w_cnt - b_cnt
+        
+        A[:]= [0]*r_cnt + [1]*w_cnt + [2]*b_cnt # modify A
+        
         return A
