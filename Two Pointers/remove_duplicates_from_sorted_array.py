@@ -3,6 +3,10 @@
 class Solution:
     # @param A : list of integers
     # @return an integer
+    
+    # - O(n) time complexity, where n = len(A)
+    # - O(1) extra space
+    # - in place
     def removeDuplicates(self, A):
         
         i= 0
