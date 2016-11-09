@@ -6,7 +6,7 @@
 #         self.val = x
 #         self.next = None
 
-# in place, linear time, constant extra time
+# in place, linear time, constant extra space
 class Solution:
     # @param A : head node of linked list
     # @return the head node in the linked list
