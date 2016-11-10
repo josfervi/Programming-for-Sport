@@ -1,7 +1,7 @@
 # my solution uses extra space,
 
-# the provided solution does not use extra memory,
-# the provided solution is developed by using
+# InterviewBit's solution does not use extra memory,
+# InterviewBit's solution is developed by using
 #  - the sum of the               elements of A
 #  - the sum of [1, 2, 3, ... n]
 #  - the sum of the square of the elements in A
