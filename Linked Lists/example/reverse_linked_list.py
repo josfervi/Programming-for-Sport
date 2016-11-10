@@ -13,6 +13,9 @@
 class Solution:
     # @param A : head node of linked list
     # @return the head node in the linked list
+    
+    # after the function A points to the last element of the reversed list
+    # the function res points to the first element of the the reversed list
     def reverseList(self, A):
         
         head= A
