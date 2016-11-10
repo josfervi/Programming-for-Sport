@@ -8,6 +8,11 @@ class ListNode(object):
     def __str__(self):
         return "%s->%s" % (self.val, self.next)
 
+# instead of the solution below, cosider the following
+#   keeping a ptr to linked list of nodes < B
+#   keeping a ptr to linked list of nodes > B
+
+
 # in-place, constant extra memory
 # linear time in len(A)
 # modifies input A into the result
