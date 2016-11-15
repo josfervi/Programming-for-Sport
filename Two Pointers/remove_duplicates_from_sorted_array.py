@@ -7,6 +7,30 @@ class Solution:
     # much more efficient: doesn't do: A[i +1:]= A[j:]
     def removeDuplicates(self, A):
         
+        idx=   0
+        len_A= 0 # the number of unique elements encountered
+        while idx<len(A):
+            
+            unique= A[idx]
+            
+            A[len_A]= unique
+            len_A+=   1
+            
+            look_ahead= 1
+            while idx+look_ahead<len(A) and A[idx+look_ahead] == unique:
+                look_ahead+= 1
+            
+            if idx+look_ahead==len(A): break
+            
+            # { A[idx+look_ahead] != unique }
+            idx+= look_ahead
+        
+        A[:]= A[:len_A] # modify A
+        return len_A
+    
+    # much more efficient: doesn't do: A[i +1:]= A[j:]
+    def removeDuplicates_2(self, A):
+        
         i= 0
         j= 0
         len_A= len(A)
@@ -27,12 +51,6 @@ class Solution:
         
         A[:]= A[:len_A] # modify A
         return len_A
-
-# sol= Solution()
-# a= [ 0, 0, 0, 1, 1, 2, 2, 3 ]
-# print a
-# len_A= sol.removeDuplicates(a)
-# print a
     
     # - O(n) time complexity, where n = len(A) if we ignore the true cost of A[i +1:]= A[j:]
     # - O(1) extra space
@@ -58,3 +76,9 @@ class Solution:
             i+= 1 # each increment of i signals a new unique element in A[:i]
         
         return len(A)
+
+# sol= Solution()
+# a= [ 0, 0, 0, 1, 1, 2, 2, 3 ]
+# print a
+# len_A= sol.removeDuplicates(a)
+# print a
