@@ -33,7 +33,7 @@ class Solution:
         #          v     v
         # None <-- 1     2 --> 3 --> 4 --> None
         
-        while rem is not None:
+        while rem:
             tmp= rem.next
             rem.next= head
             head= rem

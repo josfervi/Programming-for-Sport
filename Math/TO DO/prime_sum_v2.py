@@ -24,21 +24,12 @@
 class Solution:
     # @param A : integer
     # @return a list of integers
-    def primesum(self, A):
+    
+    primes= []
+    
+    def generatePrimesUpTo(self, N):
         
-        N= A
-        
-        if N == 4:
-            return [2, 2]
-        
-        # N > 4
-        # since N is even, 2 cannot part of the answer
-        
-        # useful to first generate a list of primes in [3...n/2]
-        # e.g. if N= 22
-        #      generate primes= [2,3,5,7,11]
-        
-        primes= [3, 5, 7]
+        Solution.primes= [2, 3, 5, 7]
         
         candidate= 11
         add2= True   # using add2, candidate grows while taking on values of the form
@@ -53,7 +44,7 @@ class Solution:
             
             sqrt_candidate= int(candidate**0.5)
             
-            for divisor in primes[1:]:
+            for divisor in Solution.primes[2:]:
                 
                 if candidate % divisor == 0:
                     # divisor divides candidate
@@ -62,7 +53,7 @@ class Solution:
                 if divisor > sqrt_candidate:
                     # if no prime <= int(sqrt(candidate)) divides candidate
                     # then candidate is prime
-                    primes.append(candidate)
+                    Solution.primes.append(candidate)
                     break
                 
             if add2: candidate+= 2
@@ -70,31 +61,53 @@ class Solution:
             
             # toggle add2:
             add2^= True
+    
+    def primesum(self, A):
         
-        # a note about membership testing
+        N= A
         
-        # version 1:
-        #   N-prime in primes       # list membership testing is too slow
-        # version 2:
-        #   primes_set= set(primes) # creating a set out of primes list and then
-        #   N-prime in primes_set   # testing set membership is also too slow
-        # version 3:
-        #   primes_set= frozenset(primes) # creating a frozenset of out primes list
-        #   N-prime in primes_set         # and then testing frozenset  membership
-        #                                 # is also too slow
-        # version 4:
-        #   # exploiting the fact that primes is an ordered list,
-        #   # use bin search to determine if N-prime is in primes
-        #   self.bin_search_is_in(N-prime, primes) # still too slow
-        # suggesting the bottleneck may not be here after all
+        if N == 4:
+            return [2, 2]
         
-        for prime in primes:
-            assert prime <= N/2
-            if self.is_in(N-prime, primes):
-                other_prime= N - prime
-                return [prime, other_prime]
+        # N > 4
+        # since N is even, 2 cannot part of the answer
+        
+        # useful to first generate a list of primes in [3...n/2]
+        # e.g. if N= 22
+        #      generate primes [2,3,5,7,11]
+        
+        self.generatePrimesUpTo(N/2)
+        
+        for prime in Solution.primes:
+            
+            candidate= N-prime
+            
+            sqrt_candidate= int(candidate**0.5)
+        
+            for divisor in Solution.primes[1:]:
+                if divisor > sqrt_candidate:
+                    second_prime= candidate
+                    return [prime, second_prime]
+                
+                if candidate % divisor == 0:
+                    break
+                    
+            
+            # if self.isPrime(N-prime):
+            #     other_prime= N - prime
+            #     return [prime, other_prime]
         
         return "error"
+        
+    def isPrime(self, candidate):
+        ''' Precondition: Solution.primes contains all primes up to int(sqrt(candidate))'''
+        ''' Precondition: candidate is odd '''
+        
+        sqrt_candidate= int(candidate**0.5)
+        
+        for divisor in Solution.primes[1:]:
+            if divisor > sqrt_candidate: return True
+            if candidate % divisor == 0: return False
     
     def is_in(self, target, sorted_lst):
         '''return target is in sorted_lst assuming sorted_lst is sorted'''

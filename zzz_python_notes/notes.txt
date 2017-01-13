@@ -1,0 +1,27 @@
+python notes
+
+ABOUT global
+The keyword global is only useful to change or
+create global variables in a local context,
+although creating global variables is
+seldom considered a good solution.
+#
+While you can access global variables without
+the global keyword, if you want to assign to them
+you have to use the global keyword (otherwise, you'll
+be creating a local variable of the same name)
+
+TO LOOP thru a GENERATOR gen
+for item in gen:
+    print( item )
+
+TO recurse inside a generator use 'yield from'
+def recursive_generator(node)
+    yield node
+    #
+    # in Python 3.3
+    yield from recursive_generator( node.right )
+    #
+    # in Python 2.7
+    for node in recursive_generator( node.right ):
+        yield node

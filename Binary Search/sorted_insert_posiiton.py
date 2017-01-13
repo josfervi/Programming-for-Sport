@@ -14,7 +14,7 @@ class Solution:
         
         mid= (l+r)/2
         # INVARIANT:
-        # A[:l] < B
+        # A[:l]   < B
         # A[r+1:] > B
         while l<=r:
             current= A[mid]
