@@ -1,3 +1,1 @@
-My solutions to InterviewBit questions, currently mostly in Python.
-
-( InterviewBit helps me polish on algorithmic programming and problem solving skills. )
+PRActice Make Perfect and this is where I keep a lot of my practice code including my solutions to InterviewBit questions, currently mostly in Python.
