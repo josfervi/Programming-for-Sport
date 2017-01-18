@@ -15,6 +15,9 @@ def median(nums):
     return (nums[n/2 - 1] + nums[n/2]) / 2.0
 
 
+# O(lg m) time
+# O(1)    working space
+
 class Solution:
     # @param A : tuple of integers
     # @param B : tuple of integers
