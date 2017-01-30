@@ -19,6 +19,7 @@ class Solution:
             
             if symbol in OPERATORS:
                 
+                # symbol is an operator
                 operator = symbol
                 operation = OPERATOR_TO_FUNC[operator]
                 
