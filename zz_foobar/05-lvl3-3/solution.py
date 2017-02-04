@@ -1,0 +1,19 @@
+# The question can be reformulated as:
+# 
+# Let S(n) be the set of all sequences of monotonically decreasing positive
+# integers (>0) s.t. the integers in each sequence sum up to n.
+# How many such sequences are there? I.e. what is the cardinality of S(n), |S(n)|?
+# 
+# answer(n) == |S(n)|-1.
+# The -1 is there because answer(n) wishes us to omit the sequence of length-1, namely [n].
+# 
+# This is a combinatorics problem.
+# May need to use generating functions.
+# 
+# The problem can also be reformulated as:
+# 
+# How many ways are there to partition n objects subject to the conditions
+# that no partition is empty (i.e. that partition sizes are >0) and
+# that partition-sizes decrease monotonically?
+# There will |S(n)| ways and answer(n) == |S(n)| - 1.
+def answer(n):
