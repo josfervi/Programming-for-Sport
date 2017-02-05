@@ -2,10 +2,15 @@
 
 # INDEX
 # 
+# - def main()
 # - class Board(list)
 # - class Cell(tuple)
 # - def answer(m)
 # - def whatIfIRemovedThis(wall, m, start, end)
+# - def run_tests()
+
+def main():
+    run_tests()
 
 class Board(list):
     ''' Useful for indexing into multidimensional lists using tuples, which imo is cleaner. '''
@@ -250,5 +255,4 @@ def run_tests():
     print answer(m) == 10 # == h + w - 1 == 7 + 4 - 1 (this requires wall at (5,3) to be removed)
 
 if __name__ == "__main__":
-    
-    run_tests()
+    main()

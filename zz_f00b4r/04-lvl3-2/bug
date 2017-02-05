@@ -1,0 +1,3 @@
+# BUG: b[(0)] == b[0] == b.__getitem__(0) should give back the first element of the list(b) instead of raising TypeError: 'int' object is not iterable
+#      bug was triggered on ln 57 and ln 141. E.g. on ln 141, I tried to get the width (num_cols) of m by doing len(m[0])
+#      got around it by doing len(list(m)[0]) instead but it's not pretty
