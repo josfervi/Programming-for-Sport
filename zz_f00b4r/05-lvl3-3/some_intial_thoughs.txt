@@ -9,6 +9,8 @@
 # 
 # This is a combinatorics problem.
 # May need to use generating functions.
+#   Turns out, yes generating functions can kind of answer this question,
+#   but ended up solving the problem by using a recurrence relation.
 # 
 # The problem can also be reformulated as:
 # 
@@ -16,4 +18,3 @@
 # that no partition is empty (i.e. that partition sizes are >0) and
 # that partition-sizes decrease monotonically?
 # There will |S(n)| ways and answer(n) == |S(n)| - 1.
-def answer(n):
