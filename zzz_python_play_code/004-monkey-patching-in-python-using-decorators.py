@@ -27,7 +27,8 @@ def extend(class_to_extend):
         attrs = extending_class__dict__.items()
         
         for k, v in attrs:
-            if k != '__dict__':
+            if k != '__dict__' and k != '__doc__': # in python 2.7/3.6: AttributeError: attribute '__dict__' of 'type' objects is not writable
+                                                    # in python 2.7:     AttributeError: attribute '__doc__' of 'type' objects is not writable
                 setattr(class_to_extend, k, v)
         return class_to_extend
     return decorator
@@ -69,6 +70,8 @@ class B(object):     # the extending_class can have any name since it exists in 
 #     def bye(self):        # add method
 #         print('Bye bye!')
 # decor(B)
+
+print('\nAfter monkey patching...\n')
 
 # behavior of introduce is not changed
 A().introduce('Jose') #=> My name is Jose.
