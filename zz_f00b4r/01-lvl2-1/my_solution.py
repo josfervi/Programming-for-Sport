@@ -1,4 +1,4 @@
-# Submission: SUCCESSFUL. Completed in: 1 hr, 55 mins, 36 secs / 72 hours
+# Submission: SUCCESSFUL. Completed in: 1 hr, 55 mins, 36 secs / 3 days
 
 # INDEX
 #

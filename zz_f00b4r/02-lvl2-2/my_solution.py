@@ -1,4 +1,4 @@
-# Submission: SUCCESSFUL. Completed in: 3 hrs, 51 mins, 53 secs.
+# Submission: SUCCESSFUL. Completed in: 3 hrs, 51 mins, 53 secs. / 3 days
 
 NUM_ROWS = 8
 NUM_COLS = 8
