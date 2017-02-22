@@ -1,246 +1,405 @@
-# this is a classic network flow problem
-#   # you do need to do some preprocessing
-#   # you need:
-#   #   # to convert all the entrances, hereby sources, into a single source
-#   #   # to convert all the exits, hereby sinks, into a single sink
-#   # then you can apply a standard network flow algorithm
-# need to review network flow algorithms
-
-
-# class Node(object):
-    
-#     def __init__(self, val, neighbors = []):
-        
-#         self.val = val
-#         self.neighbors = neighbors
-    
-#     def get_neighbors(self):
-#         return self.neighbors
-    
-#     def add_neighbor(self, neighbor, self_to_neighbor_edge_capacity):
-        
-#         assert isintance(neighbor, type(self))
-        
-#         self.neighbors.append(neighbor)
-
-# class Edge(object):
-    
-#     def __init__(self, )
-
-class Graph(list):
-    
-    # Q: how would you support other underlying representations simultaneously?
-    #    e.g. an adjacency list too
-    def __init__(self, adjacency_matrix):
-        
-        assert isinstance(adjacency_matrix, list)
-        
-        self.num_nodes = len(adjacency_matrix)
-        
-        for adj_row in adjacency_matrix:
-            assert isinstance(adj_row, list)
-            assert len(adj_row) == self.num_nodes
-        
-        self.adjacency_matrix = adjacency_matrix
-    
-    @classmethod
-    def from_adjacency_matrix(cls, adjacency_matrix):
-        return cls(adjacency_matrix)
-        
-    
-    
-    
-    # Q: in python is there an equivalent of ruby's ! to indicate methods
-    #    with side-effects (i.e. that transform the input)
-    
-    # side-effect: in-place tranforms self into
-    #              a single-source single-sink
-    #              flow network
-    def to_flow_netwok(self, sources, sinks):
-        ''' '''
-        
-        assert isinstance(sources, list)
-        assert isinstance(sinks, list)
-        
-        self.merge_nodes(sources)
-        self.merge_nodes(sinks)
-        # cast self as an object of the FlowNetwork class
-        # Q: WHAT IS BEST WAY TO DO THIS?
-        # self = FlowNetwork(self) # I don't think this is correct???...
-        # self is a local variable, so it won't work
-        
-        
-    # mutates self    
-    # side-effect: 
-    # merge / consolidate
-    def merge_nodes(self, nodes_to_be_merged, index):
-        ''' Merges nodes_to_be_merged into aggregate_node == nodes_to_be_merged[index],
-            the other nodes in nodes_to_be_merged are deleted.'''
-        
-        assert index in range(len(nodes_to_be_merged))
-        assert nodes_to_be_merged has no duplicates
-        assert nodes in nodes_to_be_merged are in range(num_nodes)
-        
-        nodes_being_merged = nodes_to_be_merged
-        
-        aggregate_node_adjanceny_matrix_row = [0]*self.num_nodes
-        
-        for node_being_merged in nodes_being_merged:
-            
-            node_being_merged_adjacency_matrix_row = self.adjacency_matrix[node_being_merged]
-            aggregate_node_adjanceny_matrix_row.addRow(node_being_merged_adjacency_matrix_row)
-            self.adjacency_matrix[node_being_merged] = None
-        
-        
-        self.adjacency_matrix[nodes_to_be_merged[index]] = aggregate_node
-    
-    def compactify(self):
-        
-            
-        
-class FlowNetwork(Graph):
-    
-    # Q: how can you support creating a FlowNetwork from either a Graph obj
-    #    or an adjacency matrix
-    #    or an adjacency list
-    #    using one __init__ method?
-    #    Or should you @classmethods like from_adjacency_matrix
-    #                                     from_adjacency_list
-    
-    # @classmethod
-    # def from_adjacency_matrix(self, adjacency_matrix):
-    #     # create a FlowNetwork obj from an adjacency matrix
-    
-    def __init__(self, graph, single_source = None, single_sink = None):
-        assert isinstance(graph, Graph)
-        
-        self.single_source = single_source
-        self.single_sink   = single_sink
-        
-        
-    
-    
-    # mutates, modifies, changes
-    # side-effect
-    # in-place
-    
-    
-    # Q: another from_Graphs(cls, graph) method where the implied source is node 0 and the implied sink is node n-1 (n := num_nodes)
-    
-    @ classmethod
-    def from_Graph(cls, graph, sources, sinks):
-        
-        FIRST = 0
-        
-        flow_network_in_progress = cls(graph, single_source, single_sink) # a new obj, graph cast as a FlowNetwork
-                                                                          # what if I wanted graph cast a FlowNetwork, but not in a new obj???
-                                                                          
-        flow_network_in_progress.merge_nodes(sources, FIRST)
-        flow_network_in_progress.merge_nodes(sinks, FIRST)
-        flow_network_in_progress.compactify_adjacency_matrix() # also changes self.single_source, self.single_sink appropriately
-        
-        completed_flow_network = flow_network_in_progress
-        
-        return completed_flow_network
-        # return graph cast a FlowNetwork but not nec a new object or should it be a new obj?
-    
-    # @ classmethod
-    # def from_adjacency_matrix(cls, adjacency_matrix, sources, sinks):
-        
-    def find_max_flow(self):
-        
-        # ford fulkerson's algo
-        
-    # Q: if you wanted to use a different algo based on inputs, what is the naming convention for this?
-    #    for example:
-    #        find_max_flow_using_Ford_Fulkerson()
-    #        find_max_flow_using_
-        
-
-    # inner class
-    class Flow(list):
-        ''' a flow is a function, f : e -> int '''
-        
-        
-        def __init__(self, flows):
-            
-            assert len(flows) = self.num_nodes
-            
-            self.flows = flows
-            
-        def calculate_value_of(self):
-            
-            # return the sum of the flows coming out of the source ==
-            #        the sum of the flows going into the sink ==
-            #        the sum of the flows across any cut (needs to be better defined), Q: is it the net flow out of any cut??? or is it the sum of the outgoing flows?
-            
-            value = 0
-            for each edge going out of the source: # what about the edges going into the source??? I don't think 
-                value += flows[edge]
-
+# Tags:
+# Network Flow
+# Flow Network
+# Max Flow
+# Maximum Flow
+# Min Cut
+# Minimum Cut
+# Ford-Fulkerson Algorithm
+# Ford Fulkerson Algorithm
+# Residual Network
+# Residual Graph
+# Augmenting Path
+# Augmenation Path
+# s-t Path
+# s t Path
+# st Path
+# Iterative DFS Path
+# Iterative Depth First Search Path
+# Single Source
+# Single Sink
+# Graph
+# Graph Operations
+# Merging Nodes
+# Node Merging
+# Merge Nodes
+# Adjacency Matrix
+# Matrix Operations
 
 
 def answer(entrances, exits, path):
-    
-    return _answer(sources = entrances, sinks = exits, adjacency_matrix = path)
+    """Returns the total number of bunnies per time step that can get through at
+         at peak throughput.
+    """
+    return FlowNetwork.value_of_max_flow(sources = entrances,
+										 sinks = exits,
+										 adjacency_matrix = path)
 
 
-def _answer(sources, sinks, adjacency_matrix):
+def _merge_rows(matrix, row_labels, into):
     
-    assert sources and sinks are disjoint
+    aggregate_row_label = into
+    aggregate_row = matrix[aggregate_row_label]
+    for row_label in row_labels:
+        current_row = matrix[row_label]
+        _add_list(current_row, into = aggregate_row)
+
+
+def _add_list(current_row, into):
+
+    aggreagate_row = into
+    n = len(aggreagate_row)
+    assert len(current_row) == n
     
-    
-    # graph = Graph(adjacency_matrix)
-    graph = Graph.from_adjacency_matrix(adjacency_matrix) # which is better???
-    
-    # flow_network = graph.to_FlowNetwok(sources, sinks)
-    flow_network = FlowNetwork.from_Graph(graph, sources, sinks)
-    
-    max_flow = flow_network.find_max_flow()
-                         # .get_max_flow()
-                         # .calculate_max_flow()
-                         # .compute_max_flow()
-                         # .find_max_flow()      # should the function name even allude to what type of computation the function does??? is that considered part of the implementation???
-    
-    
-    
-    return max_flow.get_value_of() # I would want to call it like this instead: calculate_value_of(max_flow)
+    for i in range(n):
+        aggreagate_row[i] += current_row[i]
     
     
+def _merge_cols(matrix, col_labels, into):
     
+    _transpose(matrix)
+    _merge_rows(matrix, col_labels, into)
+    _transpose(matrix)
+
+
+def _transpose(matrix):
+
+    matrix[:] = zip(*matrix)
+
+    # convert each row from a tuple to a list
+    matrix[:] = map(list, matrix)
+
+
+def _remove_rows(matrix, row_labels):
+
+    row_labels.sort()
+
+    for row_label in reversed(row_labels):
+        del matrix[row_label]
+
+
+def _remove_cols(matrix, col_labels):
     
+    _transpose(matrix)
+    _remove_rows(matrix, col_labels)
+    _transpose(matrix)
+
+
+def _relabel_in_matrix(matrix, pair):
+
+    _swap_rows(matrix, pair)
+    _swap_cols(matrix, pair)
+
+
+def _swap_rows(matrix, pair):
+
+    label, other_label = pair
+    matrix[label], matrix[other_label] = matrix[other_label], matrix[label]
+
+
+def _swap_cols(matrix, pair):
+
+    _transpose(matrix)
+    _swap_rows(matrix, pair)
+    _transpose(matrix)
+
+
+def _relabel_in_list(lst, pair):
     
+    n = len(lst)
+
+    label1, label2 = pair
     
+    for i in range(n):
+        if   lst[i] == label1: lst[i] = label2
+        elif lst[i] == label2: lst[i] = label1
+
+
+def _clear_row(matrix, row_label):
     
+    matrix[row_label] = [0]*len(matrix[row_label])
+
+
+def _clear_col(matrix, col_label):
     
+    _transpose(matrix)
+    _clear_row(matrix, col_label)
+    _transpose(matrix)
+
+
+def _clear_diagonal(matrix):
     
+    n = len(matrix)
     
+    for i in range(n):
+        matrix[i][i] = 0
+
+
+def _square_matrix_of_zeros(n):
     
+    return [ [0]*n for _ in range(n) ]
+
+
+class Graph(object):
     
+    def __init__(self, adjacency_matrix):
+        self.num_nodes = len(adjacency_matrix)
+        self.adjacency_matrix = adjacency_matrix
     
-    
-    
-    
-    
-    
-    
-    # num_nodes   = len(edge_capacities)
-    # num_sources = len(source_labels)
-    # num_sinks   = len(sink_labels)
-    
-    # new_num_nodes = num_nodes - num_sources + 1 - num_sinks + 1
-    # new_edge_capacities = [ [None]*new_num_nodes for _ in range(new_num_nodes) ]
-    
-    # merged_sources__edge_capacities__row = [0]*new_num_nodes
-    
-    # # collapse/merge all sources into one source
-    # for source_label in source_labels:
+    def merge_nodes(self, nodes, into):
         
-    #     current_source__edge_capacities__row = edge_capacities[source_label]
-    #     merged_sources__edge_capacities__row = add_rows(merged_sources_edge_capacities_row, \
-    #                                                   current_source_edge_capacities_row    )
+        aggregate_node = into
+
+        assert aggregate_node not in nodes
+        
+        matrix = self.adjacency_matrix
+        _merge_rows(matrix, row_labels = nodes, into = aggregate_node)
+        _merge_cols(matrix, col_labels = nodes, into = aggregate_node)
+
+    # overridden by FlowNetwork
+    def remove_nodes(self, nodes_to_be_removed):
+        
+        matrix = self.adjacency_matrix
+        nodes_to_be_removed.sort()
+
+        _remove_rows(matrix, row_labels = nodes_to_be_removed)
+        _remove_cols(matrix, col_labels = nodes_to_be_removed)
+        
+        self.num_nodes -= len(nodes_to_be_removed)
+
+    def __setitem__(self, tup, val):
+        """Set the capacity of edge (u,v).
+        """
+        u, v = tup
+        self.adjacency_matrix[u][v] = val
+
+    def __getitem__(self, tup):
+        """Return the capacity of edge (u,v).
+        """
+        u, v = tup
+        return self.adjacency_matrix[u][v]
+
+    def cap(self, u, v):
+        """A more readable alias for self[(u, v)].
+        """
+        return self[(u, v)]
+
+    def get_reachable_neighbors_of(self, u):
+
+        n = self.num_nodes
+        return [v for v in range(n) if self.cap(u, v) > 0]
     
-    # new_edge_capacities[ single_source_label ] = merged_sources_edge_capacities_row
+    def find_path(self, s, t):
+        """Returns a path from s to t if one exists
+               along with its bottleneck as a tuple.
+               Otherwise returns None, 0.
+        """
+        node_stack = [s]
+        visited_nodes = []
+        node_before = {}
+
+        while node_stack:
+            u = node_stack.pop()
+            if u == t:
+                break
+            if u in visited_nodes:
+                continue
+            visited_nodes.append(u)
+            for v in self.get_reachable_neighbors_of(u):
+                node_stack.append(v)
+                node_before[v] = u
+        
+        if u != t:
+            return (None, 0)
+        
+        bottleneck = 2**31 - 1
+        path_stack = [] # a list of edges
+        v = t
+        while v != s:
+            u = node_before[v]
+            path_stack.append( (u,v) )
+            bottleneck = min( bottleneck, self.cap(u,v) )
+            v = u
+        
+        return reversed(path_stack), bottleneck
+
+
+class Flow(object):
+
+    def __init__(self, flow_network):
+        self.flow = _square_matrix_of_zeros(flow_network.num_nodes)
+
+    def __setitem__(self, tup, val):
+        u, v = tup
+        self.flow[u][v] = val
     
-    # # collapse/merge all sinks into one sink
+    def __getitem__(self, tup):
+        u, v = tup
+        return self.flow[u][v]
+
+
+class FlowNetwork(Graph):
+    """Maintains a FlowNetwork."""
     
+    @classmethod
+    def from_adjacency_matrix_multiple_sources_sinks(cls,
+                                                     adjacency_matrix,
+                                                     sources,
+                                                     sinks):
+        
+        assert len(sources) > 0
+        assert len(sinks)   > 0
+        
+        flow_network_in_progress = cls(adjacency_matrix,
+                                       single_source = None,
+                                       single_sink = None)
+        
+        # A flow network must have a single source and a single sink, so
+        # merge the multiple sources into a single source and
+        # merge the multiple sinks   into a single sink.
+
+        FIRST, SECOND, LAST = 0, 1, flow_network_in_progress.num_nodes-1
+        
+        sources.sort()
+        sinks.sort()
+
+        single_source = sources[FIRST]
+        all_sources_except_single_source = sources[SECOND:LAST+1]
+        
+        single_sink = sinks[FIRST]
+        all_sinks_except_single_sink = sinks[SECOND:LAST+1]
+        
+        flow_network_in_progress.merge_sources(all_sources_except_single_source,
+                                               into = single_source)
+        
+        flow_network_in_progress.merge_sinks(all_sinks_except_single_sink,
+                                             into = single_sink)
+        
+        flow_network_in_progress.remove_nodes(nodes_to_be_removed = 
+                                              (all_sources_except_single_source + all_sinks_except_single_sink) )
+        
+        flow_network_in_progress.clean()
+
+        completed_flow_network = flow_network_in_progress
+        return completed_flow_network
+    
+    def __init__(self, adjacency_matrix, single_source = None, single_sink = None):
+        super(FlowNetwork, self).__init__(adjacency_matrix)
+        self.single_source = single_source
+        self.single_sink   = single_sink
+    
+    def merge_sources(self, sources, into):
+        single_source = into
+        self.merge_nodes(sources, into = single_source)
+        self.single_source = single_source
+    
+    def merge_sinks(self, sinks, into):
+        single_sink = into
+        self.merge_nodes(sinks, into = single_sink)
+        self.single_sink = single_sink
+    
+    def remove_nodes(self, nodes_to_be_removed):
+
+        single_source = self.single_source
+        single_sink = self.single_sink
+        
+        assert self.single_source not in nodes_to_be_removed
+        assert self.single_sink not in nodes_to_be_removed
+
+        matrix = self.adjacency_matrix
+        nodes_to_be_removed.sort()
+        
+        _relabel_in_matrix(matrix,            (0, single_source) )
+        _relabel_in_list(nodes_to_be_removed, (0, single_source) )
+        self.single_source = 0
+
+        _relabel_in_matrix(matrix,            (1, single_sink) )
+        _relabel_in_list(nodes_to_be_removed, (1, single_sink) )
+        self.single_sink = 1
+        
+        super(self.__class__, self).remove_nodes(nodes_to_be_removed)
+
+    def clean(self):
+        """Removes edges that go into the singe source,
+               edges that go out from the single sink,
+               and self-loops.
+               A self-loop is an edge that connects a vertex to itself.
+        """
+        matrix = self.adjacency_matrix
+        
+        # remove edges that go into the single source
+        _clear_col(matrix, col_label = self.single_source)
+
+        # remove edges that go out from the single sink
+        _clear_row(matrix, row_label = self.single_sink)
+
+        # remove self-loops
+        _clear_diagonal(matrix)
+    
+    def find_max_flow(self):
+        
+        # The residual network / flow invariant:
+        # residual_network.cap(u,v) = original_flow_network.cap(u,v) - flow[(u,v)]
+
+        residual_network = self
+        best_flow_soFar = Flow(self)
+        value_of_best_flow_soFar = 0
+
+        s, t = self.single_source, self.single_sink
+
+        augmenting_path, bottleneck = residual_network.find_path(s, t)
+        
+        while augmenting_path:
+            
+            for edge in augmenting_path:
+                
+                u, v = edge
+                
+                # Send flow along the path and maintain the invariant.
+                best_flow_soFar[(u, v)]  += bottleneck
+                residual_network[(u, v)] -= bottleneck
+
+                # The flow that might be "returned later". Also maintain the invariant.
+                best_flow_soFar[(v, u)]  -= bottleneck
+                residual_network[(v, u)] += bottleneck
+
+            value_of_best_flow_soFar += bottleneck
+            
+            augmenting_path, bottleneck = residual_network.find_path(s, t)
+        
+        max_flow = best_flow_soFar
+        value_of_max_flow = value_of_best_flow_soFar
+        return max_flow, value_of_max_flow
+    
+    @staticmethod
+    def value_of_max_flow(sources, sinks, adjacency_matrix):
+        """Returns the value of the maximum flow of the flow network.
+        """
+        
+        flow_network = FlowNetwork.from_adjacency_matrix_multiple_sources_sinks(adjacency_matrix,
+																		        sources,
+																		        sinks)
+        max_flow, value_of_max_flow = flow_network.find_max_flow()
+        return value_of_max_flow
+
+
+# TESTS
+
+entrances = [4,2]
+exits = [1,5,3]
+paths = [ [0,2, 0,9,0,40],
+          [0,0, 0,0,0,20],
+          [7,0, 0,6,0, 0],
+          [0,0, 0,0,0, 0],
+          [5,0,10,0,0, 8],
+          [0,0, 0,0,0, 0] ]
+
+flow_network = [ [0, 14, 12],
+                 [0,  0,  0],
+                 [0, 51,  0] ]
+
+expected_result = 26
+
+actual_result = answer(entrances, exits, paths)
+print actual_result == expected_result
+print actual_result
