@@ -1,0 +1,64 @@
+// CUDA convention
+//   data on the CPU/host starts with h_
+//   data on the GPU/device starts with d_
+//     helps avoid a common mistake of accessing data from wrong place
+
+// cudaMalloc means allocate data on the GPU
+// malloc     means allocate data on the CPU
+
+// cudaMemcpy(dst,  src,  num of bytes,    dir of transfer)
+// cudaMemcpy(d_in, h_in, ARRAY_NUM_BYTES, cudaMemcpy???)
+// 
+// dir of transfer can be:
+//   cudaMemcpyHostToDevice
+//   cudaMemcpyDeviceToHost
+//   cudaMemcpyDeviceToDevice
+
+// The CUDA launch operator
+// the kernel call
+// 
+// kernel<<<block?, elements?
+// square<<<1,      64       >>>(d_out, d_in);
+// 
+// launch the kernel named square
+// on 1 block
+// of 64 elements/threads
+// the arguments to the kernel are
+// two pointers
+// d_out, d_in
+// 
+// tells the CPU to launch on the GPU
+// 64 copies of the kernel
+// on 64 threads
+// 
+// we can only call the kernel on GPU data,
+// not CPU data
+
+
+
+// configuring the KERNEL LAUNCH
+//          num blocks, num threads per block
+// square<<<1,          64                   >>>(d_out, d_in);
+// 
+// launching 1 block of 64 threads
+// 
+// 1. can run many blocks at once
+// 2. max num threads / block
+//
+// a thread knows the idx of its thread
+// and also of its block
+
+// __global__
+// declaration specifier
+// declspec
+// the way CUDA knows this is a KERNEL as opposed to CPU code
+
+
+// CUDA built-in variable
+//   tells each thread its idx within a block
+//   a C struct, dim3
+//
+//   threadIdx
+//            .x
+//            .y
+//            .z
