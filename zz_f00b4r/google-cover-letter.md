@@ -34,7 +34,7 @@ Secondly, allow me to address each of the requirements for this role and in doin
   - 100% on [*Paradigms of Computer Programming - Fundamentals*](https://www.bit.do/louv), Louvain (UTC) via [*edX*](https://www.edx.org).
   - 100% on [*Introduction to Logic*](https://www.bit.do/stanf), Stanford University via [*Coursera*](https://www.coursera.org).
   - In progress: [*Introduction to Parallel Programming*](https://www.bit.do/nvidiacourse), NVIDIA via [*Udacity*](https://www.udacity.com).
-- I don't mind long days as long as I am learning and sorrounded by good people. I have worked through two-weekend long hackathons (Global Game Jam and HackRealityNYC) during which I have learned to work with Unity and C#.
+- I don't mind long days as long as I am learning and sorrounded by good people. I have worked through two-weekend long hackathons (Global Game Jam and HackRealityNYC) during which I have learned to work with Unity and C#. This coming weekend (March 10-12) I will be attending my third hackathon.
 
 ### Relevant Internship work experience
 
