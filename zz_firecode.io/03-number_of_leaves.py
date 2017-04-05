@@ -4,12 +4,32 @@ class BinaryTree:
         self.left_child= left_child
         self.right_child= right_child
     
+    
+    def number_of_leaves(self,root):
+        count_soFar = 0
+        node_stack = []
+        node_stack.append(root)
+        while node_stack:
+            
+            curr_node = node_stack.pop()
+            
+            if not curr_node:
+                continue
+            
+            if self.is_leaf(curr_node):
+                count_soFar += 1
+            
+            node_stack.append(curr_node.left_child)
+            node_stack.append(curr_node.right_child)
+                
+        return count_soFar
+    
     # O(n) time where n is the number of nodes in self
     # O(depth) extra space (due to recursive call which must be saved in the call stack)
     #           where depth is the depth of self
     #                 depth is O(log(n)) if self is balanced
     #                 depth is O(n)      if self is so unbalanced that it resembles a list
-    def number_of_leaves(self):
+    def number_of_leaves_recursive(self):
         
         tree= self
         
@@ -42,6 +62,7 @@ class BinaryTree:
 #     7
 #      \
 #       8
+
 
 bn= [None]*(8+1)
 

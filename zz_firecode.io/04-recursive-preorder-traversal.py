@@ -1,3 +1,7 @@
+# with generators
+#   or
+# iteratively
+
 # uses 'yield from' which requires Python 3
 #
 # changed 'yield from gen'
@@ -5,11 +9,38 @@
 #             yield node
 # so that it works in Python 2
 
+pre_ordered_list = []
+
+
 class BinaryTree:
     def __init__(self, data, left_child=None, right_child=None):
         self.data= data
         self.left_child= left_child
         self.right_child= right_child
+    
+    
+    # iterative
+    def preorder(self):
+        
+        root = self
+        
+        # DFS
+        
+        node_stack = []
+        node_stack.append(root)
+        
+        while node_stack:
+            
+            curr_node = node_stack.pop()
+            
+            if not curr_node:
+                continue
+            
+            pre_ordered_list.append(curr_node.data)
+            
+            node_stack.append(curr_node.right_child)
+            node_stack.append(curr_node.left_child)
+
     
     # O(n) time where n is the number of nodes in self
     # O(depth) extra space (due to recursive call which must be saved in the call stack)
@@ -30,6 +61,7 @@ class BinaryTree:
         return ( left.number_of_leaves() if left  else 0) + \
                (right.number_of_leaves() if right else 0)
     
+    
     def isLeave(self):
         
         tree= self
@@ -39,12 +71,16 @@ class BinaryTree:
         
         return ( tree.left_child is None ) and ( tree.right_child is None )
     
+    
     def data_in_preorder_order(self):
         res= []
         for node in self.preorder_traverse():
             res.append( node.data )
         return res
     
+    
+    # dfs
+    # recursive, generator
     def preorder_traverse(self):
         yield self
         left, right = self.left_child, self.right_child

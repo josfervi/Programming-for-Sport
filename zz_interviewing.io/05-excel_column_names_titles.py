@@ -1,3 +1,5 @@
+# This is a copy of Math/excel_column_title.py
+
 # START REWORKED SOLUTION AFTER MY INTERVIEWING.IO session with LOGARITHMIC THUNDER
 
 NL = NUM_LETTERS = 26
@@ -93,7 +95,7 @@ print num_to_col(1*26**5 + 1*26**2 + 3*26)
 # it to a column name, we can tweak the base-10 to base-26
 # converstion to get the column name directly.
 
-# START REWORKED SOLUTION AFTER MY INTERVIEWING.IO session with LOGARITHMIC THUNDER
+# END REWORKED SOLUTION AFTER MY INTERVIEWING.IO session with LOGARITHMIC THUNDER
 
 
 

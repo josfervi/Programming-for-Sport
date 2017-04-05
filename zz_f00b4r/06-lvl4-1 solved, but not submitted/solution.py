@@ -192,7 +192,7 @@ class Graph(object):
     def find_path(self, s, t):
         """Returns a path from s to t if one exists
                along with its bottleneck as a tuple.
-               Otherwise returns None, 0.
+               Otherwise returns (None, 0).
         """
         node_stack = [s]
         visited_nodes = []
@@ -225,7 +225,7 @@ class Graph(object):
 
 
 class Flow(object):
-
+    
     def __init__(self, flow_network):
         self.flow = _square_matrix_of_zeros(flow_network.num_nodes)
 

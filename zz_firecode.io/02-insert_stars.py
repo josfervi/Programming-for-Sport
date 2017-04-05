@@ -3,9 +3,31 @@
 # where identical, adjacent characters 
 # get separated with a "*".  
 
+
+def insert_star_between_pairs(word):
+  
+  if word is None:
+    return None
+  
+  if word == "":
+      return ""
+  
+  word_list = list(word)
+  prev_char = None
+  for i, char in enumerate(word_list):
+    
+    if char == prev_char:
+      
+      word_list[i] = "*" + char
+    
+    prev_char = char
+  
+  return "".join(word_list)
+
+
 # O(n) time
 # O(n) extra space
-def insert_star_between_pairs(a_string):
+def insert_star_between_pairs1(a_string):
     
     if a_string is None:
         return None
