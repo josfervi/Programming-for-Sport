@@ -1,4 +1,4 @@
-import test_decompress
+import test_decomp
 
 
 # Let N be the len of the compressed string.
@@ -11,7 +11,7 @@ import test_decompress
 #     - the number of characters in the resulting join
 #   - in the worst case the we might be joining M one-character strings
 # O(M) extra space 
-def decompress(s):
+def decomp(s):
     """
     Return the decompression of compressed string s.
     
@@ -212,7 +212,7 @@ def get_unit_str(s, i):
 
 
 # TESTS
-test_decompress.test(decompress)
+test_decomp.test(decomp)
 
 
 # get_cnt and get_unit_str TESTS

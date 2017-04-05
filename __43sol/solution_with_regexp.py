@@ -1,5 +1,5 @@
 import re
-import test_decompress
+import test_decomp
 
 RE = '(\d+)\[([a-zA-Z]*)\]'
 
@@ -10,7 +10,7 @@ def _replacement(match):
     return unit_str * cnt
 
 
-def decompress(s):
+def decomp(s):
     """
     Return the decompression of compressed string s.
     
@@ -46,4 +46,4 @@ def decompress(s):
     return s
 
 
-test_decompress.test(decompress)
+test_decomp.test(decomp)
